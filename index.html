@@ -1,134 +1,211 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>For Youuuuuuuuu ❤️</title>
+<meta charset="UTF-8">
+<title>For Youuiuuuuu ❤️</title>
 
-  <style>
-    body {
-      margin: 0;
-      overflow: hidden;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(to bottom right, #ffc0cb, #ff99aa);
-      text-align: center;
-      color: white;
-      cursor: none;
-    }
+<style>
+body {
+  margin: 0;
+  overflow: hidden;
+  font-family: Arial;
+  background: linear-gradient(to bottom right, #ff9a9e, #fecfef);
+  text-align: center;
+  color: white;
+  cursor: none;
+}
 
-    h1 {
-      margin-top: 100px;
-      font-size: 2.5rem;
-    }
+/* ✨ GLOWING NAME */
+h1 {
+  margin-top: 80px;
+  font-size: 3rem;
+  animation: glow 2s infinite alternate;
+}
 
-    #typing {
-      font-size: 1.2rem;
-      margin-top: 10px;
-      min-height: 30px;
-    }
+@keyframes glow {
+  from { text-shadow: 0 0 10px #fff, 0 0 20px #ff4d6d; }
+  to { text-shadow: 0 0 20px #fff, 0 0 40px #ff1a4d; }
+}
 
-    button {
-      margin-top: 20px;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 20px;
-      background: #ff4d6d;
-      color: white;
-      font-size: 1rem;
-      cursor: pointer;
-    }
+/* Typing */
+#typing {
+  font-size: 1.3rem;
+  margin-top: 10px;
+}
 
-    .float {
-      position: absolute;
-      font-size: 24px;
-      animation: floatUp linear infinite;
-    }
+/* Button */
+button {
+  margin-top: 20px;
+  padding: 12px 25px;
+  border-radius: 25px;
+  border: none;
+  background: #ff4d6d;
+  color: white;
+  cursor: pointer;
+}
 
-    @keyframes floatUp {
-      from { transform: translateY(100vh); }
-      to { transform: translateY(-10vh); }
-    }
+/* Floating */
+.float {
+  position: absolute;
+  font-size: 24px;
+  animation: floatUp linear infinite;
+}
 
-    .butterfly {
-      position: absolute;
-      font-size: 24px;
-      animation: fly linear infinite;
-    }
+@keyframes floatUp {
+  from { transform: translateY(100vh); }
+  to { transform: translateY(-10vh); }
+}
 
-    @keyframes fly {
-      from { transform: translateX(-10vw); }
-      to { transform: translateX(110vw); }
-    }
+.butterfly {
+  position: absolute;
+  font-size: 24px;
+  animation: fly linear infinite;
+}
 
-    .cursor-heart {
-      position: absolute;
-      pointer-events: none;
-      font-size: 16px;
-      animation: fade 1s linear forwards;
-    }
+@keyframes fly {
+  from { transform: translateX(-10vw); }
+  to { transform: translateX(110vw); }
+}
 
-    @keyframes fade {
-      to {
-        opacity: 0;
-        transform: translateY(-20px);
-      }
-    }
-  </style>
+/* Cursor hearts */
+.cursor-heart {
+  position: absolute;
+  pointer-events: none;
+  animation: fade 1s linear forwards;
+}
+
+@keyframes fade {
+  to { opacity: 0; transform: translateY(-20px); }
+}
+
+/* 💥 LOVE BURST */
+.burst {
+  position: absolute;
+  font-size: 30px;
+  animation: explode 1s ease-out forwards;
+}
+
+@keyframes explode {
+  to {
+    transform: translate(var(--x), var(--y));
+    opacity: 0;
+  }
+}
+
+/* 📸 PHOTO POP */
+.photo {
+  position: absolute;
+  width: 130px;
+  border-radius: 15px;
+  animation: pop 1s ease;
+
+  /* 💖 Heart Glow Frame */
+  padding: 5px;
+  background: radial-gradient(circle, pink, red);
+  box-shadow: 0 0 20px pink, 0 0 40px red;
+
+  /* 💓 Slight floating effect */
+  transition: transform 0.3s;
+}
+
+.photo:hover {
+  transform: scale(1.1);
+}
+
+@keyframes pop {
+  from { transform: scale(0); }
+  to { transform: scale(1); }
+}
+</style>
 </head>
 
 <body>
 
-<h1>Heeloooooooooooooooo Aasheeeeeeeeeeeeeeee cutuuuuuuuuuu 💖</h1>
+<h1>Hellooooo Aashuuuuu babyyyyy 💖</h1>
 <p id="typing"></p>
 
-<button onclick="showLove()">Tap for Love 💌</button>
+<button onclick="loveBurst()">Tap for Love 💌</button>
 
+<!-- MUSIC -->
 <audio autoplay loop>
-  <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mpeg">
+  <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3">
 </audio>
 
 <script>
-  function showLove() {
-    alert("I love you so much mera bachhaaaaaa ❤️");
+// ✨ Typing
+const text = "I know you're not feeling best... but I love you endlessly and I'm always there for youuu ❤️";
+let i = 0;
+function type() {
+  if (i < text.length) {
+    document.getElementById("typing").innerHTML += text.charAt(i);
+    i++;
+    setTimeout(type, 40);
   }
+}
+type();
 
-  const text = "I know these days are tough... but I'm always here for you ❤️";
-  let i = 0;
-  function type() {
-    if (i < text.length) {
-      document.getElementById("typing").innerHTML += text.charAt(i);
-      i++;
-      setTimeout(type, 40);
-    }
+// Floating
+function createFloating(item, cls) {
+  const el = document.createElement("div");
+  el.innerHTML = item;
+  el.className = cls;
+  el.style.left = Math.random()*100+"vw";
+  el.style.animationDuration = (5+Math.random()*5)+"s";
+  document.body.appendChild(el);
+  setTimeout(()=>el.remove(),10000);
+}
+
+setInterval(()=>createFloating("❤️","float"),500);
+setInterval(()=>createFloating("🍫","float"),700);
+setInterval(()=>createFloating("🦋","butterfly"),1000);
+
+// Cursor hearts
+document.addEventListener("mousemove",(e)=>{
+  const h=document.createElement("div");
+  h.innerHTML="💖";
+  h.className="cursor-heart";
+  h.style.left=e.pageX+"px";
+  h.style.top=e.pageY+"px";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),1000);
+});
+
+// 💥 LOVE BURST
+function loveBurst() {
+  for(let i=0;i<20;i++){
+    const b=document.createElement("div");
+    b.innerHTML="❤️";
+    b.className="burst";
+    b.style.left=window.innerWidth/2+"px";
+    b.style.top=window.innerHeight/2+"px";
+
+    const x=(Math.random()-0.5)*300+"px";
+    const y=(Math.random()-0.5)*300+"px";
+    b.style.setProperty("--x",x);
+    b.style.setProperty("--y",y);
+
+    document.body.appendChild(b);
+    setTimeout(()=>b.remove(),1000);
   }
-  type();
+}
 
-  function createFloating(item, className) {
-    const el = document.createElement("div");
-    el.innerHTML = item;
-    el.className = className;
+// 📸 PHOTO POP (ADD YOUR IMAGE LINK)
+setInterval(()=>{
+  const img=document.createElement("img");
+  const photos = [
+  "https://i.ibb.co/xqsFQwLN/Screenshot-2026-04-08-215832.png",
+  "https://i.ibb.co/ZzB1pHQy/Screenshot-2026-04-04-203809.png",
+  "https://i.ibb.co/39SFXtG5/her1.png"
+];
 
-    el.style.left = Math.random() * 100 + "vw";
-    el.style.animationDuration = (5 + Math.random() * 5) + "s";
+img.src = photos[Math.floor(Math.random() * photos.length)];
+  img.className="photo";
+  img.style.left=Math.random()*80+"vw";
+  img.style.top=Math.random()*80+"vh";
+  document.body.appendChild(img);
+  setTimeout(()=>img.remove(),3000);
+},3000);
 
-    document.body.appendChild(el);
-    setTimeout(() => el.remove(), 10000);
-  }
-
-  setInterval(() => createFloating("❤️", "float"), 500);
-  setInterval(() => createFloating("🍫", "float"), 700);
-  setInterval(() => createFloating("🦋", "butterfly"), 1000);
-
-  document.addEventListener("mousemove", (e) => {
-    const heart = document.createElement("div");
-    heart.innerHTML = "💖";
-    heart.className = "cursor-heart";
-
-    heart.style.left = e.pageX + "px";
-    heart.style.top = e.pageY + "px";
-
-    document.body.appendChild(heart);
-    setTimeout(() => heart.remove(), 1000);
-  });
 </script>
 
 </body>
