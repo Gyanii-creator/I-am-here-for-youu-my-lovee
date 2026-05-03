@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>For Youuuuu ❤️</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom right, #ffc0cb, #ff99aa);
+      text-align: center;
+      color: white;
+    }
+
+    h1 {
+      margin-top: 100px;
+      font-size: 2.5rem;
+    }
+
+    p {
+      font-size: 1.2rem;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 20px;
+      background: #ff4d6d;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .float {
+      position: absolute;
+      font-size: 24px;
+      animation: floatUp linear infinite;
+    }
+
+    @keyframes floatUp {
+      from {
+        transform: translateY(100vh);
+      }
+      to {
+        transform: translateY(-10vh);
+      }
+    }
+
+    .butterfly {
+      position: absolute;
+      font-size: 24px;
+      animation: fly linear infinite;
+    }
+
+    @keyframes fly {
+      from {
+        transform: translateX(-10vw);
+      }
+      to {
+        transform: translateX(110vw);
+      }
+    }
+  </style>
+</head>
+<body>
+
+<h1>Heyyyyyy cutieepieeeeee 💖</h1>
+<p>You’re not feeling best rn… but you’re still my favorite person and I'll always be with youuu ❤️❤️🎀🎀</p>
+
+<button onclick="showLove()">Tap for Love 💌</button>
+
+<script>
+  function showLove() {
+    alert("I’m always with you ❤️");
+  }
+
+  function createFloating(item, className) {
+    const el = document.createElement("div");
+    el.innerHTML = item;
+    el.className = className;
+
+    el.style.left = Math.random() * 100 + "vw";
+    el.style.animationDuration = (5 + Math.random() * 5) + "s";
+
+    document.body.appendChild(el);
+
+    setTimeout(() => el.remove(), 10000);
+  }
+
+  setInterval(() => createFloating("❤️", "float"), 500);
+  setInterval(() => createFloating("🍫", "float"), 700);
+  setInterval(() => createFloating("🦋", "butterfly"), 1000);
+</script>
+
+</body>
+</html>
