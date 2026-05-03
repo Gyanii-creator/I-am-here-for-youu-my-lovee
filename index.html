@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>For Youuuuu ❤️</title>
+  <title>For Youuuuuuuuu ❤️</title>
+
   <style>
     body {
       margin: 0;
@@ -11,6 +12,7 @@
       background: linear-gradient(to bottom right, #ffc0cb, #ff99aa);
       text-align: center;
       color: white;
+      cursor: none;
     }
 
     h1 {
@@ -18,8 +20,10 @@
       font-size: 2.5rem;
     }
 
-    p {
+    #typing {
       font-size: 1.2rem;
+      margin-top: 10px;
+      min-height: 30px;
     }
 
     button {
@@ -40,12 +44,8 @@
     }
 
     @keyframes floatUp {
-      from {
-        transform: translateY(100vh);
-      }
-      to {
-        transform: translateY(-10vh);
-      }
+      from { transform: translateY(100vh); }
+      to { transform: translateY(-10vh); }
     }
 
     .butterfly {
@@ -55,26 +55,52 @@
     }
 
     @keyframes fly {
-      from {
-        transform: translateX(-10vw);
-      }
+      from { transform: translateX(-10vw); }
+      to { transform: translateX(110vw); }
+    }
+
+    .cursor-heart {
+      position: absolute;
+      pointer-events: none;
+      font-size: 16px;
+      animation: fade 1s linear forwards;
+    }
+
+    @keyframes fade {
       to {
-        transform: translateX(110vw);
+        opacity: 0;
+        transform: translateY(-20px);
       }
     }
   </style>
 </head>
+
 <body>
 
-<h1>Heyyyyyy cutieepieeeeee 💖</h1>
-<p>You’re not feeling best rn… but you’re still my favorite person and I'll always be with youuu ❤️❤️🎀🎀</p>
+<h1>Heeloooooooooooooooo Aasheeeeeeeeeeeeeeee cutuuuuuuuuuu 💖</h1>
+<p id="typing"></p>
 
 <button onclick="showLove()">Tap for Love 💌</button>
 
+<audio autoplay loop>
+  <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mpeg">
+</audio>
+
 <script>
   function showLove() {
-    alert("I’m always with you ❤️");
+    alert("I love you so much mera bachhaaaaaa ❤️");
   }
+
+  const text = "I know these days are tough... but I'm always here for you ❤️";
+  let i = 0;
+  function type() {
+    if (i < text.length) {
+      document.getElementById("typing").innerHTML += text.charAt(i);
+      i++;
+      setTimeout(type, 40);
+    }
+  }
+  type();
 
   function createFloating(item, className) {
     const el = document.createElement("div");
@@ -85,13 +111,24 @@
     el.style.animationDuration = (5 + Math.random() * 5) + "s";
 
     document.body.appendChild(el);
-
     setTimeout(() => el.remove(), 10000);
   }
 
   setInterval(() => createFloating("❤️", "float"), 500);
   setInterval(() => createFloating("🍫", "float"), 700);
   setInterval(() => createFloating("🦋", "butterfly"), 1000);
+
+  document.addEventListener("mousemove", (e) => {
+    const heart = document.createElement("div");
+    heart.innerHTML = "💖";
+    heart.className = "cursor-heart";
+
+    heart.style.left = e.pageX + "px";
+    heart.style.top = e.pageY + "px";
+
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 1000);
+  });
 </script>
 
 </body>
